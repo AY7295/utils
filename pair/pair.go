@@ -37,6 +37,18 @@ func FromMap[K comparable, V any](m map[K]V) []Pair[K, V] {
 	return pairs
 }
 
-func ToSlice[F, S any](p Pair[F, S]) []any {
-	return []any{p.First, p.Second}
+func FirstSlice[F, S any](ps []Pair[F, S]) []F {
+	fs := make([]F, len(ps))
+	for i, p := range ps {
+		fs[i] = p.First
+	}
+	return fs
+}
+
+func SecondSlice[F, S any](ps []Pair[F, S]) []S {
+	ss := make([]S, len(ps))
+	for i, p := range ps {
+		ss[i] = p.Second
+	}
+	return ss
 }
