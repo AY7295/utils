@@ -15,13 +15,13 @@ func ForEach[T any](s []T, f func(T)) {
 }
 
 func Filter[T any](s []T, f func(T) bool) []T {
-	r := make([]T, 0, len(s))
+	s0 := make([]T, 0, len(s))
 	for _, v := range s {
 		if f(v) {
-			r = append(r, v)
+			s0 = append(s0, v)
 		}
 	}
-	return r
+	return s0
 }
 
 func Reduce[T any, U any](s []T, f func(U, T) U, init U) U {
@@ -33,10 +33,10 @@ func Reduce[T any, U any](s []T, f func(U, T) U, init U) U {
 }
 
 func ToMap[K comparable, T, V any](s []T, f func(T) (K, V)) map[K]V {
-	r := make(map[K]V, len(s))
+	m := make(map[K]V, len(s))
 	for _, val := range s {
 		k, v := f(val)
-		r[k] = v
+		m[k] = v
 	}
-	return r
+	return m
 }

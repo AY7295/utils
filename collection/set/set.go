@@ -22,12 +22,14 @@ func (s Set[T]) Remove(elems ...T) {
 	}
 }
 
-func (s Set[T]) Filter(f func(T) bool) {
+func (s Set[T]) Filter(f func(T) bool) Set[T] {
+	s0 := New[T]()
 	for e := range s {
-		if !f(e) {
-			s.Remove(e)
+		if f(e) {
+			s0.Add(e)
 		}
 	}
+	return s0
 }
 
 func (s Set[T]) ContainsAny(es ...T) bool {
