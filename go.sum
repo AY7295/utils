@@ -1,2 +1,4 @@
 github.com/AY7295/go-option v1.1.1 h1:7sdcs2awBalyykODnMrNt919mtJdVjRlVMBp4dXgbjg=
 github.com/AY7295/go-option v1.1.1/go.mod h1:+c6r1xvGxrGopSODWNxz3kkm6AWstIR/CSM32JWNxj0=
+github.com/panjf2000/ants v1.3.0 h1:8pQ+8leaLc9lys2viEEr8md0U4RN6uOSUCE9bOYjQ9M=
+github.com/panjf2000/ants v1.3.0/go.mod h1:AaACblRPzq35m1g3enqYcxspbbiOJJYaxU2wMpm1cXY=

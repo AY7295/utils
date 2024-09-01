@@ -15,7 +15,12 @@ type Execution[T any] func() option.Option[T]
 
 // Async creates a new onceFuture with the given fn function.
 func Async[T any](exec Execution[T]) Future[T] {
-	return newWithOption(exec)
+	initPool()
+	of := &onceFuture[T]{
+		exec: exec,
+	}
+	of.data = option.None[T](coreProcessorsPool.Submit(of.execute))
+	return of
 }
 
 func ToExecution[T any](fn func() (T, error)) Execution[T] {
@@ -32,16 +37,6 @@ type onceFuture[T any] struct {
 func (f *onceFuture[T]) Await() option.Option[T] {
 	f.execute()
 	return f.data
-}
-
-// newWithOption creates a new onceFuture with the given options.
-func newWithOption[T any](exec Execution[T]) Future[T] {
-	of := &onceFuture[T]{
-		exec: exec,
-		data: option.None[T](),
-	}
-	go of.execute()
-	return of
 }
 
 // execute will run the fn function and store the result.
